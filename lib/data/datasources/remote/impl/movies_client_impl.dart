@@ -8,11 +8,9 @@ class MoviesClientImpl extends BaseClient implements MoviesClient {
   @override
   Future<GetNowPlayingResponse> onGetNowPlaying({required int limit, required int page}) async {
     final response = await get(
-      "/2.2/users?",
+      "/3/movie/now_playing",
       params: {
-        'pagesize': limit,
         'page': page,
-        'site': 'stackoverflow',
       },
     );
 

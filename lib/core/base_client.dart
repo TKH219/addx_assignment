@@ -53,7 +53,7 @@ abstract class BaseClient {
       responseType: ResponseType.json,
       connectTimeout: 30000,
       receiveTimeout: 30000,
-      headers: {'Accept-Language': 'en'},
+      headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YjI4MjBmOTZmZWMxOGEyZmZmNjI3ZWNkYmIzM2Q3MiIsInN1YiI6IjY0ZTBkMTA3NWFiODFhMDBlMjViZmI4YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6m2-jcYdv23zvVALKF7gBOYVcHyWQUQtsWl_C4a5JQY'},
     );
   }
 
