@@ -1,0 +1,1 @@
+export 'movie_now_playing/movie_now_playing_entity.dart';
