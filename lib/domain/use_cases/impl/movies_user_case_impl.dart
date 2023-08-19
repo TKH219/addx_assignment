@@ -11,12 +11,13 @@ class MoviesUseCaseImpl implements MoviesUseCase {
   MoviesUseCaseImpl(this.moviesRepository);
 
   @override
-  Future<Either<Failure, GetNowPlayingResponse>> onGetNowPlaying(
-      {required int limit, required int page}) async {
+  Future<Either<Failure, GetNowPlayingResponse>> onGetNowPlaying({
+    required int page,
+  }) async {
     final result = await moviesRepository.onGetNowPlaying(
       page: page,
-      limit: limit,
     );
+
     return result;
   }
 }

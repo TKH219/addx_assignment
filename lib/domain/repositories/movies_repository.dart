@@ -5,7 +5,6 @@ import '../model/models.dart';
 
 abstract class MoviesRepository {
   Future<Either<Failure, GetNowPlayingResponse>> onGetNowPlaying({
-    required int limit,
     required int page,
   });
 }

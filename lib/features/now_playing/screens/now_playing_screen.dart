@@ -21,7 +21,7 @@ class NowPlayingScreenState extends State<NowPlayingScreen> {
   void initState() {
     super.initState();
     _controller = Get.find<NowPlayingController>();
-    _controller.getNowPlaying(showLoading: false);
+    _controller.onRefresh();
   }
 
   PreferredSizeWidget buildAppBar() {
@@ -75,12 +75,12 @@ class NowPlayingScreenState extends State<NowPlayingScreen> {
 
 
   Future<void> onRefresh() async {
-    await _controller.getNowPlaying(showLoading: false);
+    await _controller.onRefresh();
     _refreshController.refreshCompleted();
   }
 
   Future<void> onLoading() async {
-    await _controller.getNowPlaying(showLoading: false);
+    await _controller.onLoadMore();
     _refreshController.loadComplete();
   }
 

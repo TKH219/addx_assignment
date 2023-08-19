@@ -12,11 +12,11 @@ class MoviesRepositoryImpl extends MoviesRepository {
   MoviesRepositoryImpl(this.moviesClient);
 
   @override
-  Future<Either<Failure, GetNowPlayingResponse>> onGetNowPlaying(
-      {required int limit, required int page}) async {
+  Future<Either<Failure, GetNowPlayingResponse>> onGetNowPlaying({
+    required int page,
+  }) async {
     try {
       final GetNowPlayingResponse response = await moviesClient.onGetNowPlaying(
-        limit: limit,
         page: page,
       );
 

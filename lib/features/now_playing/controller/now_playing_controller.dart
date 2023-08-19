@@ -2,7 +2,6 @@ import 'package:addx_assignment/domain/use_cases/movies_user_case.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/model/models.dart';
-import '../../../utils/constants/constants.dart';
 
 class NowPlayingController extends GetxController {
   MoviesUseCase moviesUseCase;
@@ -12,12 +11,14 @@ class NowPlayingController extends GetxController {
   RxList<MovieNowPlaying> movies = <MovieNowPlaying>[].obs;
 
   int currentPage = 1;
+  int totalPages = 1;
 
   bool hasMore = true;
 
-  Future<void> getNowPlaying({bool showLoading = true}) async {
+  Future<void> getNowPlaying({
+    bool isRefresh = false,
+  }) async {
     final result = await moviesUseCase.onGetNowPlaying(
-      limit: limitUser,
       page: currentPage,
     );
 
@@ -25,14 +26,27 @@ class NowPlayingController extends GetxController {
       failure.handleError();
     }, (data) {
       final List<MovieNowPlaying> listData = data.results.map((element) => MovieNowPlaying.fromEntity(element)).toList();
+      if (isRefresh) {
+        movies.clear();
+      }
+
       movies.addAll(listData);
-      // hasMore = data.hasMore ?? false;
-      if (hasMore) {
+      totalPages = data.totalPages ?? 1;
+      if (totalPages > currentPage) {
         currentPage += 1;
       }
 
       update();
     });
+  }
+
+  Future<void> onRefresh() async {
+    currentPage = 1;
+    await getNowPlaying(isRefresh: true,);
+  }
+
+  Future<void> onLoadMore() async {
+    await getNowPlaying();
   }
 
   @override

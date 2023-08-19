@@ -4,9 +4,10 @@ import '../../../../core/base_client.dart';
 import '../../../response/response.dart';
 
 class MoviesClientImpl extends BaseClient implements MoviesClient {
-
   @override
-  Future<GetNowPlayingResponse> onGetNowPlaying({required int limit, required int page}) async {
+  Future<GetNowPlayingResponse> onGetNowPlaying({
+    required int page,
+  }) async {
     final response = await get(
       "/3/movie/now_playing",
       params: {
