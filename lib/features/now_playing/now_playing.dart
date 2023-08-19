@@ -1,2 +1,0 @@
-class now_playing {
-}

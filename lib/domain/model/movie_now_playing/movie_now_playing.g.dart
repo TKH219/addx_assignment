@@ -9,38 +9,37 @@ part of 'movie_now_playing.dart';
 MovieNowPlaying _$MovieNowPlayingFromJson(Map<String, dynamic> json) =>
     MovieNowPlaying(
       adult: json['adult'] as bool,
-      backdropPath: json['backdrop_path'] as String,
       id: json['id'] as int,
-      originalLanguage: json['original_language'] as String,
-      originalTitle: json['original_title'] as String,
+      originalLanguage: json['originalLanguage'] as String,
+      originalTitle: json['originalTitle'] as String,
       overview: json['overview'] as String,
       popularity: (json['popularity'] as num).toDouble(),
-      posterPath: json['poster_path'] as String,
-      releaseDate: json['release_date'] as String,
+      posterPath: json['posterPath'] as String?,
+      releaseDate: json['releaseDate'] as String,
       title: json['title'] as String,
       video: json['video'] as bool,
-      voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: (json['vote_count'] as num).toDouble(),
-      genreIds: (json['genre_ids'] as List<dynamic>?)
-              ?.map((e) => e as int)
-              .toList() ??
-          const <int>[],
+      voteAverage: (json['voteAverage'] as num).toDouble(),
+      voteCount: (json['voteCount'] as num).toDouble(),
+      backdropPath: json['backdropPath'] as String?,
+      genreIds:
+          (json['genreIds'] as List<dynamic>?)?.map((e) => e as int).toList() ??
+              const <int>[],
     );
 
 Map<String, dynamic> _$MovieNowPlayingToJson(MovieNowPlaying instance) =>
     <String, dynamic>{
       'adult': instance.adult,
-      'backdrop_path': instance.backdropPath,
+      'backdropPath': instance.backdropPath,
       'id': instance.id,
-      'original_language': instance.originalLanguage,
-      'original_title': instance.originalTitle,
+      'originalLanguage': instance.originalLanguage,
+      'originalTitle': instance.originalTitle,
       'overview': instance.overview,
       'popularity': instance.popularity,
-      'poster_path': instance.posterPath,
-      'release_date': instance.releaseDate,
+      'posterPath': instance.posterPath,
+      'releaseDate': instance.releaseDate,
       'title': instance.title,
       'video': instance.video,
-      'vote_average': instance.voteAverage,
-      'vote_count': instance.voteCount,
-      'genre_ids': instance.genreIds,
+      'voteAverage': instance.voteAverage,
+      'voteCount': instance.voteCount,
+      'genreIds': instance.genreIds,
     };

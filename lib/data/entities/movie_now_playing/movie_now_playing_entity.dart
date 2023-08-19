@@ -7,7 +7,7 @@ class MovieNowPlayingEntity extends Object {
   @JsonKey(name: 'adult')
   final bool adult;
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
   @JsonKey(name: 'id')
   final int id;
   @JsonKey(name: 'original_language')
@@ -19,7 +19,7 @@ class MovieNowPlayingEntity extends Object {
   @JsonKey(name: 'popularity')
   final double popularity;
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
   @JsonKey(name: 'release_date')
   final String releaseDate;
   @JsonKey(name: 'title')
@@ -40,7 +40,6 @@ class MovieNowPlayingEntity extends Object {
 
   MovieNowPlayingEntity({
     required this.adult,
-    required this.backdropPath,
     required this.id,
     required this.originalLanguage,
     required this.originalTitle,
@@ -52,6 +51,7 @@ class MovieNowPlayingEntity extends Object {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.backdropPath,
     this.genreIds = const <int>[],
   });
 }
