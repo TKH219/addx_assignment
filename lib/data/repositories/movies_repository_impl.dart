@@ -23,7 +23,7 @@ class MoviesRepositoryImpl extends MoviesRepository {
       return Right(response);
     } catch (error) {
       if (error is DioError) {
-        return Left(ServerFailure(error));
+        return Left(APIFailure(error));
       } else {
         return Left(GeneralFailure(error));
       }

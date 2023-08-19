@@ -1,5 +1,7 @@
+import 'dart:developer';
+
+import 'package:addx_assignment/injection.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../utils/constants/constants.dart';
 
@@ -19,8 +21,13 @@ abstract class BaseClient {
     String endPoint, {
     Map<String, dynamic>? params,
   }) async {
-    debugPrint('Call API >> $method >> url: $endPoint >> body: $params');
-    dio = Dio(_buildRequestOptions());
+    log('Call API >> $method >> url: $endPoint >> body: $params');
+    final accessToken = await secureStorage.read(key: SecureStorageConstant.ACCESS_TOKEN);
+    if (accessToken == null) {
+      return;
+    }
+
+    dio = Dio(_buildRequestOptions(accessToken));
     Response response;
     switch (method) {
       case HttpMethod.get:
@@ -42,18 +49,18 @@ abstract class BaseClient {
         response = await dio.patch(endPoint, data: params);
     }
 
-    debugPrint("Response data: ${response.data}");
+    log("Response data: ${response.data}");
     return response;
   }
 
-  BaseOptions _buildRequestOptions() {
+  BaseOptions _buildRequestOptions(String accessToken) {
     return BaseOptions(
       baseUrl: apiBaseUrl,
       contentType: Headers.jsonContentType,
       responseType: ResponseType.json,
       connectTimeout: 30000,
       receiveTimeout: 30000,
-      headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YjI4MjBmOTZmZWMxOGEyZmZmNjI3ZWNkYmIzM2Q3MiIsInN1YiI6IjY0ZTBkMTA3NWFiODFhMDBlMjViZmI4YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6m2-jcYdv23zvVALKF7gBOYVcHyWQUQtsWl_C4a5JQY'},
+      headers: {'Authorization': 'Bearer $accessToken'},
     );
   }
 

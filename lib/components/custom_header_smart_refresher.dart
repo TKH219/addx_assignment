@@ -8,7 +8,7 @@ class CustomHeaderSmartRefresher extends ClassicHeader {
           refreshStyle: RefreshStyle.Follow,
           idleIcon: const CupertinoActivityIndicator( color: Colors.black87),
           releaseIcon: const CupertinoActivityIndicator(color: Colors.black87),
-          completeIcon: null,
+          completeIcon: const CupertinoActivityIndicator(color: Colors.black87),
           failedIcon: null,
           completeText: '',
           failedText: '',

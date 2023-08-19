@@ -21,12 +21,18 @@ class NowPlayingScreenState extends State<NowPlayingScreen> {
   void initState() {
     super.initState();
     _controller = Get.find<NowPlayingController>();
+<<<<<<< HEAD
+    Future.microtask(() async {
+      await _controller.onRefresh();
+    });
+=======
     _controller.onRefresh();
+>>>>>>> 0419f01 (handle refresh and load more for now playing screen)
   }
 
   PreferredSizeWidget buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.indigo.shade700,
       elevation: 0,
       centerTitle: false,
       title: const Text(

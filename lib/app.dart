@@ -1,7 +1,6 @@
+import 'package:addx_assignment/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'features/now_playing/screens/now_playing_screen.dart';
 
 class App extends StatelessWidget {
   @override
@@ -15,7 +14,7 @@ class App extends StatelessWidget {
       ),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: NowPlayingScreen(),
+      home: SplashScreen(),
     );
   }
 }

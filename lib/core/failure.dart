@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 
 import '../utils/utils.dart';
 
@@ -20,17 +19,23 @@ class GeneralFailure extends Failure {
 }
 
 
-class ServerFailure extends Failure {
+class APIFailure extends Failure {
   final DioError? error;
 
-  ServerFailure(this.error);
+  APIFailure(this.error);
 
   void handleError() {
     switch(error?.response?.statusCode){
       case 500:
-      case 400:
+        showToastMessage(
+          error?.response?.statusMessage ?? 'Server not found',
+          gravity: ToastGravity.BOTTOM,
+        );
       case 401:
-        showToastMessage(error?.response?.statusMessage ?? '', gravity: ToastGravity.BOTTOM);
+        showToastMessage(
+          error?.response?.statusMessage ?? 'Authentication failure',
+          gravity: ToastGravity.BOTTOM,
+        );
         break;
       default:
         break;
