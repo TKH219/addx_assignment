@@ -21,13 +21,9 @@ class NowPlayingScreenState extends State<NowPlayingScreen> {
   void initState() {
     super.initState();
     _controller = Get.find<NowPlayingController>();
-<<<<<<< HEAD
     Future.microtask(() async {
       await _controller.onRefresh();
     });
-=======
-    _controller.onRefresh();
->>>>>>> 0419f01 (handle refresh and load more for now playing screen)
   }
 
   PreferredSizeWidget buildAppBar() {
